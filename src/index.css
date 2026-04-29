@@ -1,0 +1,1191 @@
+/* ============================================
+   REDDY247 - Global CSS Variables & Base Styles
+   ============================================ */
+
+:root {
+  /* Brand Colors */
+  --brand-primary: #e58c1f;
+  --brand-secondary: #f0a830;
+  --brand-tertiary: #c77510;
+
+  /* Background Colors */
+  --bg-primary: #0f1117;
+  --bg-secondary: #1a1d28;
+  --bg-tertiary: #252836;
+  --bg-header: #151722;
+  --bg-nav-menu: #1a1d28;
+  --bg-card: #1e2130;
+  --bg-hover: #2a2d3e;
+
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #a0aec0;
+  --text-muted: #6b7280;
+  --text-brand: #e58c1f;
+
+  /* Border Colors */
+  --border-primary: #2d3148;
+  --border-secondary: #3d4060;
+
+  /* Login Button */
+  --bg-login-btn: #e58c1f;
+  --bg-signup-btn: #1a1d28;
+  --text-login-btn: #ffffff;
+
+  /* Deposit/Withdraw */
+  --bg-deposit: #e58c1f;
+  --bg-withdraw: #1a1d28;
+
+  /* Icons */
+  --icon-primary: #a0aec0;
+  --icon-secondary: #e58c1f;
+  --icon-brand: #e58c1f;
+  --icon-brand-secondary: #e58c1f;
+  --icon-brand-tertiary: #f0a830;
+
+  /* Safe Area Insets */
+  --safe-area-inset-left: 0px;
+  --safe-area-inset-right: 0px;
+  --safe-area-inset-top: 0px;
+  --safe-area-inset-bottom: 0px;
+
+  /* Legacy CSS Var Mapping */
+  --bg_headerBg: var(--bg-header);
+  --bg_headerDeskNavMenu: var(--bg-nav-menu);
+  --bg_color_primary: var(--bg-primary);
+  --bg_color_secondary: var(--bg-secondary);
+  --bg_color_LoginBtnBgColor: var(--bg-login-btn);
+  --bg_color_SignUpBtnBgColor: var(--bg-signup-btn);
+  --bg_color_DepositBtnBg: var(--bg-deposit);
+  --bg_color_BalanceBtnBg: var(--bg-secondary);
+  --bg_homeDepositBtnBgColor: var(--bg-deposit);
+  --bg_homeWithdrawBtnBgColor: var(--bg-withdraw);
+  --bg_text_brand_primary: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  --bg_brand_secondary: var(--brand-secondary);
+  --bg_MenuHoverColor: var(--bg-hover);
+
+  --text_color_primary1: var(--text-primary);
+  --text_color_primary2: var(--text-primary);
+  --text_color_primary5: var(--text-primary);
+  --text_color_loginButtonTextColor: var(--text-login-btn);
+  --text_headerDeskNav: var(--text-secondary);
+  --text_brand_primary: var(--brand-primary);
+
+  --border_color_primary: var(--border-primary);
+  --border_color_primary1: var(--border-primary);
+
+  --icon-color-primary: var(--icon-primary);
+  --icon-color-secondary: var(--icon-secondary);
+  --icon-color-brand-secondary: var(--icon-brand-secondary);
+  --icon-color-brand-tertiary: var(--icon-brand-tertiary);
+}
+
+/* ============================================
+   Reset & Base
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+/* ============================================
+   App Container
+   ============================================ */
+.app-bg {
+  background-color: var(--bg-primary);
+}
+
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   Scrollbar Utilities
+   ============================================ */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ============================================
+   Header / Topbar
+   ============================================ */
+.topbar {
+  background-color: var(--bg-header);
+  border-bottom: 1px solid var(--border-primary);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  flex-shrink: 0;
+}
+
+.brand .imglogo {
+  max-height: 45px;
+  width: auto;
+}
+
+.top-meta {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* Nav Menu Bar */
+.nav-menu-bar {
+  background-color: var(--bg-nav-menu);
+  border-bottom: 0.5px solid var(--border-primary);
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 5px 12px;
+  align-items: center;
+}
+
+.nav-menu-bar::-webkit-scrollbar { display: none; }
+
+.nav-link-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-decoration: none;
+  white-space: nowrap;
+  min-height: 28px;
+  min-width: max-content;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.2s ease;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.nav-link-item:hover,
+.nav-link-item.active {
+  color: var(--brand-primary);
+}
+
+/* ============================================
+   Sidebar
+   ============================================ */
+.left-sidebar {
+  width: 20%;
+  min-width: 180px;
+  overflow-y: auto;
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 110px);
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .left-sidebar {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.sidebar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  background-color: var(--bg-primary);
+  overflow: hidden;
+}
+
+.sidebar-item-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 24px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-primary);
+  transition: all 0.2s ease;
+  opacity: 0.7;
+}
+
+.sidebar-item-link:hover {
+  background-color: var(--bg-hover);
+  transform: scale(1.02);
+  opacity: 1;
+}
+
+/* ============================================
+   Right Sidebar (Betslip)
+   ============================================ */
+.right-sidebar {
+  width: 26%;
+  min-width: 240px;
+  overflow-y: auto;
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 110px);
+  padding: 8px;
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .right-sidebar {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.betslip-container {
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  background-color: var(--bg-primary);
+  padding: 8px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.betslip-tabs {
+  display: flex;
+  gap: 4px;
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  padding: 2px;
+  width: 75%;
+}
+
+.betslip-tab {
+  flex: 1;
+  font-size: 12px;
+  text-transform: capitalize;
+  white-space: nowrap;
+  border-radius: 6px;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.betslip-tab.active {
+  background-color: var(--brand-secondary);
+  color: white;
+}
+
+.betslip-tab:not(.active) {
+  background-color: transparent;
+  color: var(--text-primary);
+}
+
+.betslip-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 32px;
+  text-align: center;
+  border-radius: 8px;
+  min-height: 220px;
+  border: 1px solid var(--border-primary);
+  background-color: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ============================================
+   Main Content Area
+   ============================================ */
+.main-layout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.content-wrapper {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0;
+}
+
+@media (min-width: 1024px) {
+  .content-wrapper {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .content-wrapper {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
+
+.center-content {
+  flex: 1;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .center-content {
+    width: 54%;
+  }
+}
+
+/* Casino pages: full width, no left sidebar */
+.center-content.casino-fullwidth {
+  width: 100% !important;
+  max-width: 100%;
+}
+
+
+/* ============================================
+   Auth Buttons
+   ============================================ */
+.btn-login {
+  background-color: var(--bg-login-btn);
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  padding: 8px 16px 8px 12px;
+  font-weight: 800;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-login:hover { opacity: 0.9; }
+
+.btn-signup {
+  background-color: transparent;
+  color: white;
+  border: 1px solid var(--border-secondary);
+  border-radius: 9999px;
+  padding: 8px 16px 8px 12px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-signup:hover { opacity: 0.9; }
+
+.btn-login-mobile {
+  background-color: var(--bg-login-btn);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-weight: 800;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.btn-signup-mobile {
+  background-color: var(--bg-signup-btn);
+  color: white;
+  border: 1px solid var(--border-secondary);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-weight: 800;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+.main-footer {
+  background-color: var(--bg-primary);
+  padding: 24px 12px;
+  margin-bottom: 48px;
+}
+
+.footer-inner {
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.footer-section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.footer-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--brand-primary);
+}
+
+.footer-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: var(--bg-secondary);
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.footer-social-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(229, 140, 31, 0.3);
+}
+
+/* ============================================
+   WhatsApp Floating Button
+   ============================================ */
+.whatsapp-container {
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+.whatsapp-btn {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 28px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative;
+  z-index: 2;
+}
+
+.whatsapp-btn:hover {
+  transform: scale(1.1);
+  color: white;
+}
+
+.whatsapp-text {
+  background: white;
+  color: #075E54;
+  padding: 8px 15px;
+  border-radius: 25px;
+  margin-left: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  font-size: 13px;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  border: 1px solid #ddd;
+  pointer-events: none;
+}
+
+.whatsapp-container:hover .whatsapp-text {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ============================================
+   Mobile Bottom Navigation
+   ============================================ */
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-primary);
+  display: flex;
+  z-index: 1100;
+  padding: 4px 0;
+}
+
+@media (min-width: 1024px) {
+  .mobile-bottom-nav { display: none; }
+}
+
+.mobile-nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-size: 10px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 6px 2px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.mobile-nav-item:hover,
+.mobile-nav-item.active {
+  color: var(--brand-primary);
+}
+
+.mobile-nav-item svg {
+  font-size: 20px;
+}
+
+/* ============================================
+   Page Content Cards
+   ============================================ */
+.content-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.content-card-header {
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  padding: 20px 24px;
+  color: white;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+/* ============================================
+   Login/Signup Modals
+   ============================================ */
+.modal-content {
+  background-color: var(--bg-secondary) !important;
+  border: 1px solid var(--border-primary) !important;
+  border-radius: 12px !important;
+  color: var(--text-primary) !important;
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--border-primary) !important;
+}
+
+.modal-footer {
+  border-top: 1px solid var(--border-primary) !important;
+}
+
+.form-control {
+  background-color: var(--bg-tertiary) !important;
+  border: 1px solid var(--border-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+.form-control::placeholder {
+  color: var(--text-muted) !important;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 2px rgba(229, 140, 31, 0.3) !important;
+  border-color: var(--brand-primary) !important;
+}
+
+/* ============================================
+   Game Cards
+   ============================================ */
+.game-card {
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-primary);
+  background-color: var(--bg-card);
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(229, 140, 31, 0.2);
+  border-color: var(--brand-primary);
+}
+
+.game-card img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+/* ============================================
+   AfterLogin Specific Styles
+   ============================================ */
+.user-balance-info {
+  font-size: 10px;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.deposit-btn {
+  background-color: var(--bg-deposit);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-size: 10px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.deposit-btn:hover { opacity: 0.9; }
+
+.withdraw-btn {
+  background-color: var(--bg-withdraw);
+  color: white;
+  border: 1px solid var(--border-secondary);
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-size: 10px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.withdraw-btn:hover { opacity: 0.9; }
+
+/* ============================================
+   Offcanvas Mobile Menu
+   ============================================ */
+.offcanvas-body .list-group-item-dark {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-primary) !important;
+}
+
+.offcanvas-body .list-group-item-action:hover {
+  background-color: var(--bg-hover) !important;
+  color: var(--brand-primary) !important;
+}
+
+/* ============================================
+   Responsive Utilities
+   ============================================ */
+@media (max-width: 768px) {
+  .desktop-only { display: none !important; }
+}
+
+@media (min-width: 769px) {
+  .mobile-only { display: none !important; }
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+/* ============================================
+   Account Pages (AfterLogin)
+   ============================================ */
+.account-sidebar {
+  width: 280px;
+  min-height: 400px;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--border-primary);
+  padding: 16px;
+  flex-shrink: 0;
+}
+
+.account-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.account-menu-item:hover,
+.account-menu-item.active {
+  background-color: var(--bg-hover);
+  color: var(--brand-primary);
+}
+
+.account-content-area {
+  flex: 1;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--border-primary);
+  padding: 24px;
+}
+
+/* ============================================
+   Table Styles
+   ============================================ */
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.custom-table th {
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.custom-table td {
+  color: var(--text-primary);
+  font-size: 13px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.custom-table tr:hover td {
+  background-color: var(--bg-hover);
+}
+
+/* ============================================
+   Status Badges
+   ============================================ */
+.badge-success {
+  background-color: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.badge-warning {
+  background-color: rgba(234, 179, 8, 0.2);
+  color: #eab308;
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.badge-danger {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* ============================================
+   Responsive: Mobile Padding
+   ============================================ */
+.page-container {
+  padding-bottom: 80px; /* space for bottom nav */
+}
+
+@media (min-width: 1024px) {
+  .page-container {
+    padding-bottom: 0;
+  }
+}
+
+/* ============================================
+   Modal Overlay & Box
+   ============================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 440px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+  animation: slideUp 0.25s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.modal-logo-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 18px;
+  color: #000;
+  flex-shrink: 0;
+}
+
+.modal-close-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--border-primary);
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.modal-close-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.modal-error {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #f87171;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+/* ============================================
+   Form Helpers
+   ============================================ */
+.form-group { display: flex; flex-direction: column; }
+
+.form-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.input-icon-wrap { position: relative; }
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.input-with-icon { padding-left: 36px !important; }
+.input-with-icon-right { padding-right: 36px !important; }
+
+.input-icon-right-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon-right-btn:hover { color: var(--text-primary); }
+
+.btn-primary-full {
+  width: 100%;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  color: #000;
+  font-weight: 800;
+  font-size: 14px;
+  border: none;
+  border-radius: 10px;
+  padding: 13px 20px;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.btn-primary-full:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-primary-full:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Spinner */
+.spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  border-top-color: #000;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   Match Cards & Odds
+   ============================================ */
+.match-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 10px;
+  padding: 14px;
+  transition: all 0.2s ease;
+}
+
+.match-card:hover {
+  border-color: var(--brand-primary);
+  background: var(--bg-hover);
+}
+
+.match-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.match-sport-badge {
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(229, 140, 31, 0.15);
+  color: var(--brand-primary);
+  padding: 2px 8px;
+  border-radius: 99px;
+  border: 1px solid rgba(229, 140, 31, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.live-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 2px 8px;
+  border-radius: 99px;
+  margin-left: auto;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ef4444;
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.match-teams {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.match-team {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.match-vs {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--bg-tertiary);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.match-odds-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.odds-btn {
+  flex: 1;
+  min-width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 6px;
+  border-radius: 8px;
+  border: 1px solid var(--border-primary);
+  background: var(--bg-tertiary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.odds-btn:hover {
+  background: rgba(229, 140, 31, 0.15);
+  border-color: var(--brand-primary);
+}
+
+.odds-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.odds-value {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--brand-primary);
+}
+
+/* ============================================
+   Section Heading
+   ============================================ */
+.section-heading {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-heading::before {
+  content: '';
+  width: 3px;
+  height: 16px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 2px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
