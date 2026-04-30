@@ -1,39 +1,97 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { sidebarLinks } from '../data/navLinks';
+
+// SVG icons matching live site sidebar icons
+const SIDEBAR_ICONS = {
+  gift: (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" width="18" height="18">
+      <path d="M253.3 35.1c6.1-11.8 1.5-26.3-10.2-32.4s-26.3-1.5-32.4 10.2L117.6 192H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H544c17.7 0 32-14.3 32-32s-14.3-32-32-32H458.4L253.3 35.1zM439.6 192H136.4L253.3 doer10.2l186.3 181.8zM32 288c0 17.7 14.3 32 32 32h96v160H128c-17.7 0-32 14.3-32 32s14.3 32 32 32h320c17.7 0 32-14.3 32-32s-14.3-32-32-32H416V320h96c17.7 0 32-14.3 32-32H32z"/>
+    </svg>
+  ),
+  cricket: (
+    <svg width="18" height="18" viewBox="0 0 19 18" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+      <path d="M4.36255 16.7108C4.35063 16.7037 4.34109 16.6966 4.32917 16.6895C3.88333 16.4077 3.4518 16.107 3.05842 15.7566C2.91299 15.6263 2.77709 15.489 2.63404 15.3564C2.59828 15.3256 2.61974 15.3067 2.63642 15.283C2.81524 15.0533 2.99643 14.8213 3.17524 14.5916C3.92148 13.635 4.6701 12.676 5.41634 11.7194C6.27225 10.6231 7.12578 9.52678 7.98169 8.43047C8.8066 7.37204 9.6339 6.31125 10.4588 5.25282C11.329 4.14231 12.1969 3.02942 13.0647 1.9189C13.2292 1.70816 13.3961 1.49506 13.5582 1.28195C13.5797 1.25354 13.5916 1.24644 13.6274 1.26538C13.9468 1.45244 14.2472 1.67028 14.5333 1.90233C14.6692 2.01125 14.8123 2.1107 14.9458 2.22199C15.0817 2.34038 15.2128 2.46351 15.3439 2.58663C15.3773 2.61742 15.3535 2.63162 15.3368 2.65293C15.1008 2.95602 14.8623 3.26147 14.6263 3.56455C13.9254 4.46433 13.222 5.36411 12.5211 6.26389C11.7343 7.27259 10.9476 8.28129 10.1584 9.29C9.42648 10.2277 8.69693 11.1653 7.965 12.103C7.12101 13.1827 6.2794 14.2648 5.43542 15.3446C5.08971 15.7874 4.7464 16.2278 4.40069 16.6706C4.39116 16.6848 4.38401 16.7037 4.36255 16.7108Z"/>
+    </svg>
+  ),
+  football: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 13v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+    </svg>
+  ),
+  tennis: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM6.19 16.4C5.4 15.16 4.92 13.63 4.92 12s.48-3.16 1.27-4.4C7.27 8.87 7.79 10.37 7.79 12s-.52 3.13-1.6 4.4zm2.26 2.11c.95-1.4 1.5-3.12 1.5-4.51 0-1.39-.55-3.11-1.5-4.51C9.46 8.58 10.69 8 12 8s2.54.58 3.55 1.49c-.95 1.4-1.5 3.12-1.5 4.51 0 1.39.55 3.11 1.5 4.51C14.54 19.42 13.31 20 12 20s-2.54-.58-3.55-1.49zm7.36-1.11C14.73 16 14.21 14.63 14.21 12s.52-3.13 1.6-4.4c.79 1.24 1.27 2.77 1.27 4.4s-.48 3.16-1.27 4.4z"/>
+    </svg>
+  ),
+  horse: (
+    <svg width="18" height="18" viewBox="0 0 512 512" fill="currentColor">
+      <path d="M430.6 208c0-79.5-57.5-145.7-133.3-158.9C289.3 21.3 265.3 0 237.3 0c-15.1 0-28.5 6.7-37.9 17.3-3.6-1-7.3-1.5-11.1-1.5-10.5 0-20.2 4-27.5 10.7-3.6-1-7.4-1.5-11.3-1.5C102.4 25 64 63.4 64 110.7c0 19.7 7 37.8 18.5 52.2C53.9 175.9 32 204.5 32 238.7V400c0 17.7 14.3 32 32 32h32v48c0 17.7 14.3 32 32 32s32-14.3 32-32v-48h32v48c0 17.7 14.3 32 32 32s32-14.3 32-32v-48h32v48c0 17.7 14.3 32 32 32s32-14.3 32-32v-48h32c17.7 0 32-14.3 32-32V238.7c0-10.4-2.5-20.2-6.9-28.9C430.5 209.2 430.6 208.6 430.6 208z"/>
+    </svg>
+  ),
+  dog: (
+    <svg width="18" height="18" viewBox="0 0 640 512" fill="currentColor">
+      <path d="M32 144C32 99.8 67.8 64 112 64H336c26.5 0 48 21.5 48 48v32h16c44.2 0 80 35.8 80 80V256c0 70.7-57.3 128-128 128H368c-26.5 0-48-21.5-48-48V208c0-8.8-7.2-16-16-16H112C85.5 192 64 170.5 64 144v0c0-8.8-7.2-16-16-16s-16 7.2-16 16c0 44.2 35.8 80 80 80H304c35.3 0 64 28.7 64 64v128c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V336h32c88.4 0 160-71.6 160-160V224c0-61.9-50.1-112-112-112H384V112c0-44.2-35.8-80-80-80H112C50.1 32 0 82.1 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32z"/>
+    </svg>
+  ),
+  cards: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M21.47 4.35l-1.34-.56v9.03l2.43-5.86c.41-1.02-.09-2.19-1.09-2.61zm-19.5 7.11L6.93 20.65c.27.66.98.97 1.64.71L17.96 17c.66-.27.97-.98.71-1.64L13.71 5.35c-.17-.43-.52-.7-.91-.79V4.5a1.5 1.5 0 0 0-3 0v.06c-.39.09-.74.36-.91.79l-5.86 14.14c-.27.66.05 1.37.71 1.64z"/>
+    </svg>
+  ),
+  trophy: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/>
+    </svg>
+  ),
+  casino: (
+    <svg fill="currentColor" viewBox="0 0 96 96" height="18" width="18">
+      <path d="M62.8 7.2h-1.2L48 12 34.401 7.2c-2.4-.8-5.199.801-5.6 3.6v10c0 2.798 2.4 4.8 4.8 4.8h1.2l13.2-6 13.598 6c2.8.8 5.2-.802 6-3.6V12c0-2.799-2.4-4.8-4.8-4.8m-21.6 75.6-18-60c-1.2-2.4-3.6-3.6-6.399-2.799l-6 2.001c-2.001.4-3.201 2.4-3.201 4.401l-3.6 57.6c0 2.8 2.001 4.8 4.401 5.2h27.999c2.799 0 4.8-2.002 4.8-4.8.399-.4 0-1.204 0-1.603m47.202-56.4c0-2-1.2-3.6-3.2-4.4l-6-2.4c-2.4-.802-5.2.398-6 2.798l-18 60c-.802 2.4.8 5.2 3.2 6 .4 0 .801.4 1.6.4h27.6c2.798 0 4.8-2.002 4.8-4.8z"/>
+    </svg>
+  ),
+  slots: (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" height="18" width="18">
+      <path fillRule="evenodd" d="M7 3C4.23858 3 2 5.23858 2 8v13h17v-6h4V8.18633c0.4534-0.31624 0.75-0.84164 0.75-1.43633C23.75 5.7835 22.9665 5 22 5s-1.75 0.7835-1.75 1.75c0 0.59469 0.2966 1.12009 0.75 1.43633V13h-2V8c0-2.76142-2.2386-5-5-5H7Zm-3 7h3v4H4v-4Zm5 4v-4h3v4H9Zm5 0h3v-4h-3v4Z" clipRule="evenodd"/>
+    </svg>
+  ),
+  aviator: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+    </svg>
+  ),
+};
+
+const SIDEBAR_ITEMS = [
+  { title: 'Promos & Bonus', href: '/bonus', icon: 'gift' },
+  { title: 'Cricket', href: '/cricket', icon: 'cricket' },
+  { title: 'Football', href: '/football', icon: 'football' },
+  { title: 'Tennis', href: '/tennis', icon: 'tennis' },
+  { title: 'Horse Racing', href: '/horse-racing', icon: 'horse' },
+  { title: 'Greyhound Racing', href: '/greyhound-racing', icon: 'dog' },
+  { title: 'Indian Card Games', href: '/aura', icon: 'cards' },
+  { title: 'Sportsbook', href: '/sportsbook', icon: 'trophy' },
+  { title: 'Live Casino', href: '/live-casino', icon: 'casino' },
+  { title: 'Slot Games', href: '/slots', icon: 'slots' },
+  { title: 'Aviator', href: '/aviator', icon: 'aviator' },
+];
 
 export default function LeftSidebar() {
   return (
-    <aside className="left-sidebar" style={{ padding: '8px 0 8px 8px' }}>
+    <aside className="left-sidebar" style={{ padding: '8px 0 8px 0' }}>
       <ul className="sidebar-list">
-        {sidebarLinks.map((group) => (
-          <React.Fragment key={group.category}>
-            <li style={{
-              padding: '6px 16px',
-              fontSize: '10px',
-              fontWeight: '700',
-              color: 'var(--text-muted)',
-              letterSpacing: '1px',
-              background: 'var(--bg-secondary)',
-              borderBottom: '1px solid var(--border-primary)',
-            }}>
-              {group.category}
-            </li>
-            {group.items.map((item) => (
-              <li key={item.href} style={{ width: '100%' }}>
-                <NavLink
-                  to={item.href}
-                  className={({ isActive }) =>
-                    `sidebar-item-link${isActive ? ' text-warning fw-bold' : ''}`
-                  }
-                  style={({ isActive }) => isActive ? { color: 'var(--brand-primary)', opacity: 1 } : {}}
-                >
-                  <i className={item.icon} style={{ fontSize: '14px', color: 'var(--icon-color-primary)', minWidth: '18px' }}></i>
-                  <span>{item.title}</span>
-                </NavLink>
-              </li>
-            ))}
-          </React.Fragment>
+        {SIDEBAR_ITEMS.map((item) => (
+          <li key={item.href} style={{ width: '100%' }}>
+            <NavLink
+              to={item.href}
+              className={({ isActive }) =>
+                `sidebar-item-link${isActive ? ' sidebar-item-active' : ''}`
+              }
+            >
+              <span style={{ color: 'var(--icon-color-primary)', minWidth: '20px', display: 'flex', alignItems: 'center' }}>
+                {SIDEBAR_ICONS[item.icon] || SIDEBAR_ICONS.trophy}
+              </span>
+              <span>{item.title}</span>
+            </NavLink>
+          </li>
         ))}
       </ul>
     </aside>

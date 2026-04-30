@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 
 // Sport-specific mini sidebar matching HTML cricket/football pages
 const SPORT_PAGES = {
-  '/cricket': { label: 'Cricket', competitions: ['Twenty20 Big Bash', 'Bangladesh Premier League', 'ICC Champions Trophy', 'IPL 2025', 'India vs New Zealand', 'The Hundred', 'PSL 2025'] },
+  '/cricket': { label: 'Cricket', competitions: ['Twenty20 Big Bash', 'Bangladesh Premier League', 'ICC Champions Trophy', 'IPL 2026', 'India vs New Zealand', 'The Hundred', 'PSL 2025'] },
   '/football': { label: 'Football', competitions: ['English Premier League', 'La Liga', 'UEFA Champions League', 'Serie A', 'Bundesliga', 'Ligue 1'] },
   '/tennis': { label: 'Tennis', competitions: ['ATP Tour', 'WTA Tour', 'Grand Slams', 'Davis Cup'] },
   '/horse-racing': { label: 'Horse Racing', competitions: ['UK Racing', 'Irish Racing', 'US Racing', 'Australian Racing'] },

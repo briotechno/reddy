@@ -5,6 +5,14 @@ import { topNavLinks } from '../data/navLinks';
 import LoginModal from './LoginModal';
 import SignupModal from './SignupModal';
 
+const IPL_ICON = (
+  <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+    <circle cx="12" cy="12" r="10" fill="url(#iplGrad)"/>
+    <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 1.5c1.5 0 3.2 2 4.1 5.5H7.9c.9-3.5 2.6-5.5 4.1-5.5zm-5.4 7H5.2a8.5 8.5 0 0 1 3.3-4.8C7.5 7 6.8 8.6 6.6 10.5zm-1.4 1.5h2.3c0 .5 0 1 .1 1.5H5.2a8.5 8.5 0 0 1 0-1.5zm1.4 3h1.8c.3 1.5.8 2.8 1.5 3.8a8.5 8.5 0 0 1-3.3-3.8zm4.4 4.1c-1.5 0-3.2-2-4.1-5.5h8.2c-.9 3.5-2.6 5.5-4.1 5.5zm2.4-.3c.7-1 1.2-2.3 1.5-3.8h1.8a8.5 8.5 0 0 1-3.3 3.8zm2-5.3c0-.5.1-1 .1-1.5h2.3a8.5 8.5 0 0 1 0 1.5h-2.4zm.2-3c-.2-1.9-.9-3.5-1.9-4.8a8.5 8.5 0 0 1 3.3 4.8h-1.4z" fill="white"/>
+    <defs><linearGradient id="iplGrad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stopColor="#7c3aed"/><stop offset="1" stopColor="#4338ca"/></linearGradient></defs>
+  </svg>
+);
+
 const NAV_ICONS = {
   home: (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" height="16" width="16"><path d="M400 0L176 0c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8L24 64C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9L192 448c-17.7 0-32 14.3-32 32s14.3 32 32 32l192 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-26.1 0C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24L446.4 64c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0z"/></svg>),
   cricket: (<svg width="16" height="16" viewBox="0 0 19 18" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M4.36255 16.7108C4.35063 16.7037 4.34109 16.6966 4.32917 16.6895C3.88333 16.4077 3.4518 16.107 3.05842 15.7566C2.91299 15.6263 2.77709 15.489 2.63404 15.3564C2.59828 15.3256 2.61974 15.3067 2.63642 15.283C2.81524 15.0533 2.99643 14.8213 3.17524 14.5916C3.92148 13.635 4.6701 12.676 5.41634 11.7194C6.27225 10.6231 7.12578 9.52678 7.98169 8.43047C8.8066 7.37204 9.6339 6.31125 10.4588 5.25282C11.329 4.14231 12.1969 3.02942 13.0647 1.9189C13.2292 1.70816 13.3961 1.49506 13.5582 1.28195C13.5797 1.25354 13.5916 1.24644 13.6274 1.26538C13.9468 1.45244 14.2472 1.67028 14.5333 1.90233C14.6692 2.01125 14.8123 2.1107 14.9458 2.22199C15.0817 2.34038 15.2128 2.46351 15.3439 2.58663C15.3773 2.61742 15.3535 2.63162 15.3368 2.65293C15.1008 2.95602 14.8623 3.26147 14.6263 3.56455C13.9254 4.46433 13.222 5.36411 12.5211 6.26389C11.7343 7.27259 10.9476 8.28129 10.1584 9.29C9.42648 10.2277 8.69693 11.1653 7.965 12.103C7.12101 13.1827 6.2794 14.2648 5.43542 15.3446C5.08971 15.7874 4.7464 16.2278 4.40069 16.6706C4.39116 16.6848 4.38401 16.7037 4.36255 16.7108Z"/></svg>),
@@ -18,6 +26,7 @@ const NAV_ICONS = {
   crash: (<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>),
   fish: (<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm-1-11v6l5-3-5-3z"/></svg>),
   trophy: (<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/></svg>),
+  ipl: IPL_ICON,
   default: (<i className="bi bi-circle" style={{ fontSize: '14px' }}></i>)
 };
 
@@ -26,16 +35,16 @@ function getIcon(name) {
 }
 
 function getDateTimeString() {
-  return new Date().toLocaleString('en-US', {
+  return new Date().toLocaleString('en-IN', {
     month: 'short', day: '2-digit', year: 'numeric',
-    timeZone: 'Asia/Karachi'
-  }) + ', Asia/Karachi';
+    timeZone: 'Asia/Calcutta'
+  }) + ' Asia/Calcutta';
 }
 
 function getClockString() {
-  return new Date().toLocaleTimeString('en-US', {
+  return new Date().toLocaleTimeString('en-IN', {
     hour: '2-digit', minute: '2-digit', second: '2-digit',
-    hour12: false, timeZone: 'Asia/Karachi'
+    hour12: false, timeZone: 'Asia/Calcutta'
   });
 }
 
@@ -88,27 +97,51 @@ export default function Header() {
           {/* Right: Auth buttons */}
           <div style={{ display:'flex', alignItems:'center', gap:'6px', paddingRight:'8px' }}>
             {isLoggedIn ? (
-              <div style={{ display:'flex', alignItems:'center', gap:'8px' }}>
-                <div className="d-none d-lg-flex flex-column" style={{ fontSize:'11px', lineHeight:1.3 }}>
-                  <span style={{ color:'var(--text-secondary)' }}>Login as <strong style={{ color:'#fff' }}>{user?.username}</strong></span>
-                  <span style={{ color:'var(--text-muted)', fontSize:'10px' }}>Last logged in: {user?.lastLogin || 'Today'}</span>
+              <div style={{ display:'flex', alignItems:'center', gap:'6px' }}>
+                {/* Login as + Last logged in */}
+                <div className="d-none d-lg-flex flex-column" style={{ fontSize:'11px', lineHeight:1.4, marginRight:'4px' }}>
+                  <span style={{ color:'var(--text-secondary)' }}>Login as <strong style={{ color:'#fff' }}>+91-{user?.username}</strong></span>
+                  <span style={{ color:'var(--text-muted)', fontSize:'10px' }}>Last logged in {user?.lastLogin || new Date().toLocaleDateString('en-IN') + ', ' + new Date().toLocaleTimeString('en-IN', { hour12: false })}</span>
                 </div>
-                <div className="user-balance-info d-none d-lg-flex">
-                  <span style={{ fontSize:'11px', color:'var(--text-secondary)' }}>Balance</span>
-                  <span style={{ fontSize:'13px', fontWeight:'700', color:'var(--brand-primary)' }}>₹{user?.balance || '0.00'}</span>
+                {/* Available balance */}
+                <div className="d-none d-lg-block" style={{ fontSize:'11px', color:'var(--text-secondary)', whiteSpace:'nowrap', marginRight:'4px' }}>
+                  Available balance: <strong style={{ color:'#fff' }}>₹{user?.balance || '1,000'}</strong>
                 </div>
-                <Link to="/AfterLogin/Deposit">
-                  <button className="deposit-btn"><span>+</span><span>Deposit</span></button>
-                </Link>
-                <div className="dropdown d-none d-lg-block">
-                  <button className="btn btn-dark btn-sm rounded-pill dropdown-toggle" data-bs-toggle="dropdown">
-                    <i className="bi bi-person-circle me-1"></i>{user?.username}
+                {/* Deposit button — green */}
+                <Link to="/AfterLogin/Deposit" style={{ textDecoration:'none' }}>
+                  <button style={{ background:'#22c55e', color:'#000', border:'none', borderRadius:'9999px', padding:'7px 14px', fontWeight:'800', fontSize:'12px', display:'flex', alignItems:'center', gap:'5px', cursor:'pointer', whiteSpace:'nowrap' }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    Deposit
                   </button>
-                  <ul className="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+                </Link>
+                {/* Withdraw button — orange */}
+                <Link to="/AfterLogin/Withdrawal" style={{ textDecoration:'none' }}>
+                  <button style={{ background:'var(--brand-primary)', color:'#000', border:'none', borderRadius:'9999px', padding:'7px 14px', fontWeight:'800', fontSize:'12px', display:'flex', alignItems:'center', gap:'5px', cursor:'pointer', whiteSpace:'nowrap' }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Withdraw
+                  </button>
+                </Link>
+                {/* Notification bell */}
+                <button style={{ background:'transparent', border:'none', color:'var(--brand-primary)', cursor:'pointer', position:'relative', padding:'4px' }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0" fill="none" stroke="currentColor" strokeWidth="2"/></svg>
+                </button>
+                {/* Account button + dropdown */}
+                <div className="dropdown">
+                  <button className="dropdown-toggle" data-bs-toggle="dropdown" style={{ background:'var(--brand-primary)', color:'#000', border:'none', borderRadius:'9999px', padding:'7px 14px', fontWeight:'800', fontSize:'12px', display:'flex', alignItems:'center', gap:'5px', cursor:'pointer' }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+                    Account
+                  </button>
+                  <ul className="dropdown-menu dropdown-menu-dark dropdown-menu-end" style={{ background:'var(--bg-secondary)', border:'1px solid var(--border-primary)', minWidth:'200px' }}>
                     <li><Link className="dropdown-item" to="/AfterLogin">My Account</Link></li>
                     <li><Link className="dropdown-item" to="/AfterLogin/Deposit">Deposit</Link></li>
                     <li><Link className="dropdown-item" to="/AfterLogin/Withdrawal">Withdraw</Link></li>
+                    <li><Link className="dropdown-item" to="/AfterLogin/OpenBets">Open Bets</Link></li>
                     <li><Link className="dropdown-item" to="/AfterLogin/BetHistory">Bet History</Link></li>
+                    <li><Link className="dropdown-item" to="/AfterLogin/ProfitLoss">Profit &amp; Loss</Link></li>
+                    <li><Link className="dropdown-item" to="/AfterLogin/AccountStatement">Account Statement</Link></li>
+                    <li><Link className="dropdown-item" to="/AfterLogin/Transactions">Transactions</Link></li>
+                    <li><Link className="dropdown-item" to="/AfterLogin/Bonus">Bonus</Link></li>
+                    <li><Link className="dropdown-item" to="/AfterLogin/ReferEarn">Refer &amp; Earn</Link></li>
                     <li><Link className="dropdown-item" to="/AfterLogin/Settings">Settings</Link></li>
                     <li><hr className="dropdown-divider" /></li>
                     <li><button className="dropdown-item text-danger" onClick={logout}>Logout</button></li>
@@ -149,11 +182,12 @@ export default function Header() {
         {/* Second Nav Row — Sports scrollable bar */}
         <div className="nav-menu-bar">
           {topNavLinks.map((link) => (
-            <NavLink key={link.href} to={link.href}
-              className={({ isActive }) => `nav-link-item ${isActive ? 'active' : ''}`}
-              title={link.title} end={link.href === '/'}>
+            <NavLink key={link.key ?? (link.title + link.href)} to={link.href}
+              className={({ isActive }) => `nav-link-item ${isActive ? 'active' : ''} ${link.special ? 'nav-link-ipl' : ''}`}
+              title={link.title} end={link.href === '/'}
+            >
               {getIcon(link.icon)}
-              <span style={{ fontFamily:'Lato, sans-serif', fontSize:'12px' }}>{link.title}</span>
+              <span style={{ fontFamily:'Lato, sans-serif', fontSize:'12px', color: link.special ? '#a78bfa' : undefined }}>{link.title}</span>
             </NavLink>
           ))}
         </div>

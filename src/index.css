@@ -1,47 +1,48 @@
 /* ============================================
    REDDY247 - Global CSS Variables & Base Styles
+   Exact colors extracted from live reddyid247.com
    ============================================ */
 
 :root {
-  /* Brand Colors */
-  --brand-primary: #e58c1f;
-  --brand-secondary: #f0a830;
-  --brand-tertiary: #c77510;
+  /* Brand Colors — live site: #fa971e orange */
+  --brand-primary: #fa971e;
+  --brand-secondary: #fa971e;
+  --brand-tertiary: #e08418;
 
-  /* Background Colors */
-  --bg-primary: #0f1117;
-  --bg-secondary: #1a1d28;
-  --bg-tertiary: #252836;
-  --bg-header: #151722;
-  --bg-nav-menu: #1a1d28;
-  --bg-card: #1e2130;
-  --bg-hover: #2a2d3e;
+  /* Background Colors — live site */
+  --bg-primary: #18181b;       /* body background */
+  --bg-secondary: #27272a;     /* sidebar, cards, containers */
+  --bg-tertiary: #3f3f46;      /* input fields, muted bg */
+  --bg-header: #000000;        /* header = solid black */
+  --bg-nav-menu: #18181b;      /* nav menu bar same as body */
+  --bg-card: #27272a;
+  --bg-hover: #3f3f46;
 
-  /* Text Colors */
+  /* Text Colors — live site */
   --text-primary: #ffffff;
-  --text-secondary: #a0aec0;
-  --text-muted: #6b7280;
-  --text-brand: #e58c1f;
+  --text-secondary: #d2d2d2;   /* sidebar labels, muted items */
+  --text-muted: #a1a1aa;
+  --text-brand: #fa971e;
 
-  /* Border Colors */
-  --border-primary: #2d3148;
-  --border-secondary: #3d4060;
+  /* Border Colors — live site */
+  --border-primary: #545454;   /* sidebar dividers, card borders */
+  --border-secondary: #60a3b3; /* sign-up button cyan border */
 
   /* Login Button */
-  --bg-login-btn: #e58c1f;
-  --bg-signup-btn: #1a1d28;
+  --bg-login-btn: #fa971e;
+  --bg-signup-btn: #27272a;
   --text-login-btn: #ffffff;
 
   /* Deposit/Withdraw */
-  --bg-deposit: #e58c1f;
-  --bg-withdraw: #1a1d28;
+  --bg-deposit: #fa971e;
+  --bg-withdraw: #27272a;
 
   /* Icons */
-  --icon-primary: #a0aec0;
-  --icon-secondary: #e58c1f;
-  --icon-brand: #e58c1f;
-  --icon-brand-secondary: #e58c1f;
-  --icon-brand-tertiary: #f0a830;
+  --icon-primary: #d2d2d2;
+  --icon-secondary: #fa971e;
+  --icon-brand: #fa971e;
+  --icon-brand-secondary: #fa971e;
+  --icon-brand-tertiary: #fa971e;
 
   /* Safe Area Insets */
   --safe-area-inset-left: 0px;
@@ -94,7 +95,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Lato', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   overflow-x: hidden;
@@ -132,6 +133,7 @@ body {
 .topbar {
   background-color: var(--bg-header);
   border-bottom: 1px solid var(--border-primary);
+  border-top: 3px solid #1d6fb4;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -186,6 +188,19 @@ body {
   color: var(--brand-primary);
 }
 
+/* IPL 2026 special nav item */
+.nav-link-ipl {
+  color: #a78bfa !important;
+}
+.nav-link-ipl svg circle {
+  animation: iplSpin 8s linear infinite;
+  transform-origin: center;
+}
+@keyframes iplSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 /* ============================================
    Sidebar
    ============================================ */
@@ -213,30 +228,33 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  border: 1px solid var(--border-primary);
-  border-radius: 8px;
-  background-color: var(--bg-primary);
+  background-color: var(--bg-secondary);
   overflow: hidden;
 }
 
 .sidebar-item-link {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 8px 24px;
-  font-size: 12px;
+  gap: 14px;
+  padding: 10px 20px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--text-primary);
   text-decoration: none;
   border-bottom: 1px solid var(--border-primary);
-  transition: all 0.2s ease;
-  opacity: 0.7;
+  transition: all 0.15s ease;
 }
 
 .sidebar-item-link:hover {
   background-color: var(--bg-hover);
-  transform: scale(1.02);
-  opacity: 1;
+  color: var(--brand-primary);
+}
+
+.sidebar-item-active {
+  background-color: var(--bg-hover);
+  color: var(--brand-primary);
+  border-left: 3px solid var(--brand-primary);
+  padding-left: 17px;
 }
 
 /* ============================================
@@ -390,7 +408,7 @@ body {
 .btn-signup {
   background-color: transparent;
   color: white;
-  border: 1px solid var(--border-secondary);
+  border: 1px solid #60a3b3;
   border-radius: 9999px;
   padding: 8px 16px 8px 12px;
   font-size: 12px;

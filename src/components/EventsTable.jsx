@@ -82,18 +82,18 @@ function EventsTable({ title, icon, events, innerLink, showLive = false }) {
   return (
     <div style={{ border: '1px solid var(--border-primary)', borderRadius: '8px', overflow: 'hidden', marginBottom: '12px' }}>
       {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 10px', background: 'var(--bg-secondary)', borderBottom: '1px solid var(--border-primary)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 12px', background: showLive ? '#22c55e' : 'var(--bg-secondary)', borderBottom: '1px solid var(--border-primary)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           {showLive ? (
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 29 29" fill="none">
-              <path d="M14.5 2.83337C8.06 2.83337 2.83337 8.06004 2.83337 14.5C2.83337 20.94 8.06 26.1667 14.5 26.1667C20.94 26.1667 26.1667 20.94 26.1667 14.5C26.1667 8.06004 20.94 2.83337 14.5 2.83337ZM12.1667 19.75V9.25004L19.1667 14.5L12.1667 19.75Z" fill="var(--brand-primary)" />
+              <path d="M14.5 2.83337C8.06 2.83337 2.83337 8.06004 2.83337 14.5C2.83337 20.94 8.06 26.1667 14.5 26.1667C20.94 26.1667 26.1667 20.94 26.1667 14.5C26.1667 8.06004 20.94 2.83337 14.5 2.83337ZM12.1667 19.75V9.25004L19.1667 14.5L12.1667 19.75Z" fill="#fff" />
             </svg>
           ) : (
             <svg width="18" height="18" viewBox="0 0 16 16" fill="var(--brand-primary)">
               <path d="M7,9h2V4H7V9z M9,11c0-0.553-0.447-1-1-1s-1,0.447-1,1s0.447,1,1,1S9,11.553,9,11z M16,8c0-4.419-3.581-8-8-8S0,3.581,0,8 s3.581,8,8,8S16,12.419,16,8z M14,8c0,1.603-0.625,3.109-1.756,4.244C11.109,13.375,9.603,14,8,14s-3.109-0.625-4.244-1.756 C2.625,11.109,2,9.603,2,8s0.625-3.109,1.756-4.244C4.891,2.625,6.397,2,8,2s3.109,0.625,4.244,1.756C13.375,4.891,14,6.397,14,8z"/>
             </svg>
           )}
-          <span style={{ fontWeight: '700', fontSize: '16px', color: 'var(--text-primary)' }}>
+          <span style={{ fontWeight: '700', fontSize: '16px', color: showLive ? '#fff' : 'var(--text-primary)' }}>
             {showLive ? 'In Play' : 'Upcoming Events'}
           </span>
         </div>

@@ -1,76 +1,195 @@
 import React, { useState } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function WithdrawalPage() {
+  const { user } = useAuth();
+  const balance = user?.balance || '1,000';
+  const [accountType, setAccountType] = useState('new'); // 'new' | 'previous'
   const [amount, setAmount] = useState('');
-  const [method, setMethod] = useState('upi');
-  const [upiId, setUpiId] = useState('');
+  const [ifsc, setIfsc] = useState('');
+  const [accountNo, setAccountNo] = useState('');
+  const [confirmAccountNo, setConfirmAccountNo] = useState('');
+  const [accountName, setAccountName] = useState('');
+  const [showMore, setShowMore] = useState(false);
+
+  const rules = [
+    'Free cash amount cannot be withdrawn by this form.',
+    'If multiple users are using same withdraw account then all the linked users will be blocked.',
+    'Paytm account numbers always start with 91.',
+  ];
 
   return (
     <div>
-      <h2 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '4px' }}>Withdraw Funds</h2>
-      <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '20px' }}>Withdraw your winnings to your bank account or UPI.</p>
+      {/* Title */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" strokeWidth="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <h2 style={{ fontSize: '18px', fontWeight: '700', color: 'var(--text-primary)', margin: 0 }}>Withdraw Funds</h2>
+      </div>
 
-      {/* Available Balance */}
-      <div style={{
-        background: 'linear-gradient(135deg, rgba(229,140,31,0.1), rgba(229,140,31,0.05))',
-        border: '1px solid rgba(229,140,31,0.3)', borderRadius: '10px',
-        padding: '16px 20px', marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-      }}>
+      {/* Rules box */}
+      <div style={{ background: 'var(--bg-primary)', borderRadius: '6px', padding: '14px 16px', marginBottom: '16px', border: '1px solid var(--border-primary)' }}>
+        <ol style={{ margin: 0, padding: '0 0 0 18px', color: 'var(--text-secondary)', fontSize: '13px', lineHeight: 1.8 }}>
+          {(showMore ? rules : rules.slice(0, 1)).map((r, i) => (
+            <li key={i}>{r}</li>
+          ))}
+        </ol>
+        <button
+          onClick={() => setShowMore(!showMore)}
+          style={{ background: 'none', border: 'none', color: 'var(--brand-primary)', cursor: 'pointer', fontSize: '12px', padding: '4px 0 0', fontWeight: '600' }}
+        >
+          {showMore ? 'See Less..' : 'See More..'}
+        </button>
+      </div>
+
+      {/* Fill in required */}
+      <div style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '14px', fontWeight: '600' }}>
+        Please fill in all required fields*
+      </div>
+
+      {/* Use New Account / Use Previous Account tabs */}
+      <div style={{ display: 'flex', borderRadius: '6px', overflow: 'hidden', marginBottom: '16px', border: '1px solid var(--border-primary)' }}>
+        <button
+          onClick={() => setAccountType('new')}
+          style={{
+            flex: 1, padding: '12px', border: 'none', cursor: 'pointer',
+            background: accountType === 'new' ? 'var(--brand-primary)' : 'var(--bg-tertiary)',
+            color: accountType === 'new' ? '#000' : 'var(--text-secondary)',
+            fontWeight: '700', fontSize: '13px', transition: 'all 0.2s',
+          }}
+        >
+          Use New Account
+        </button>
+        <button
+          onClick={() => setAccountType('previous')}
+          style={{
+            flex: 1, padding: '12px', border: 'none', borderLeft: '1px solid var(--border-primary)', cursor: 'pointer',
+            background: accountType === 'previous' ? 'var(--brand-primary)' : 'var(--bg-tertiary)',
+            color: accountType === 'previous' ? '#000' : 'var(--text-secondary)',
+            fontWeight: '700', fontSize: '13px', transition: 'all 0.2s',
+          }}
+        >
+          Use Previous Account
+        </button>
+      </div>
+
+      {/* Available to withdrawal pill */}
+      <div style={{ marginBottom: '14px' }}>
+        <span style={{
+          background: 'var(--brand-primary)', color: '#000',
+          fontWeight: '700', fontSize: '12px',
+          padding: '5px 14px', borderRadius: '9999px', display: 'inline-block',
+        }}>
+          Available to withdrawal : ₹ {balance}
+        </span>
+      </div>
+
+      {/* Form fields */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+        {/* Amount */}
         <div>
-          <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Available for Withdrawal</div>
-          <div style={{ fontSize: '24px', fontWeight: '900', color: 'var(--brand-primary)' }}>₹10,250.00</div>
+          <label style={{ fontSize: '13px', fontWeight: '600', color: 'var(--text-secondary)', display: 'block', marginBottom: '6px' }}>
+            Amount <span style={{ color: '#ef4444' }}>*</span>
+          </label>
+          <div style={{ position: 'relative' }}>
+            <span style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)', fontSize: '15px' }}>₹</span>
+            <input
+              id="withdrawAmount"
+              type="number"
+              placeholder="Enter Amount"
+              value={amount}
+              onChange={e => setAmount(e.target.value)}
+              style={{ width: '100%', padding: '12px 60px 12px 36px', background: 'var(--bg-primary)', border: '1px solid var(--border-primary)', borderRadius: '6px', color: 'var(--text-primary)', fontSize: '14px', outline: 'none', boxSizing: 'border-box' }}
+            />
+            <span style={{ position: 'absolute', right: '14px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)', fontSize: '12px', fontWeight: '600' }}>INR</span>
+          </div>
         </div>
-        <i className="bi bi-wallet2" style={{ fontSize: '32px', color: 'var(--brand-primary)', opacity: 0.5 }}></i>
-      </div>
 
-      {/* Method */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '20px' }}>
-        {[{ id: 'upi', label: 'UPI', icon: 'bi-phone' }, { id: 'bank', label: 'Bank Transfer', icon: 'bi-bank' }].map((m) => (
-          <button key={m.id} onClick={() => setMethod(m.id)} style={{
-            background: method === m.id ? 'rgba(229,140,31,0.15)' : 'var(--bg-tertiary)',
-            border: `1px solid ${method === m.id ? 'var(--brand-primary)' : 'var(--border-primary)'}`,
-            borderRadius: '10px', padding: '14px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px',
-          }}>
-            <i className={m.icon} style={{ fontSize: '20px', color: method === m.id ? 'var(--brand-primary)' : 'var(--text-secondary)' }}></i>
-            <span style={{ fontWeight: '700', fontSize: '13px', color: 'var(--text-primary)' }}>{m.label}</span>
-          </button>
-        ))}
-      </div>
+        {accountType === 'new' && (
+          <>
+            {/* IFSC Code */}
+            <div>
+              <label style={{ fontSize: '13px', fontWeight: '600', color: 'var(--text-secondary)', display: 'block', marginBottom: '6px' }}>
+                IFSC Code <span style={{ color: '#ef4444' }}>*</span>
+              </label>
+              <input
+                id="withdrawIfsc"
+                type="text"
+                placeholder="Enter IFSC Code"
+                value={ifsc}
+                onChange={e => setIfsc(e.target.value)}
+                style={{ width: '100%', padding: '12px 14px', background: 'var(--bg-primary)', border: '1px solid var(--border-primary)', borderRadius: '6px', color: 'var(--text-primary)', fontSize: '14px', outline: 'none', boxSizing: 'border-box' }}
+              />
+            </div>
 
-      {/* UPI / Bank Details */}
-      <div className="form-group" style={{ marginBottom: '14px' }}>
-        <label className="form-label" htmlFor="withdrawUpiId">{method === 'upi' ? 'UPI ID' : 'Bank Account / IFSC'}</label>
-        <input
-          id="withdrawUpiId"
-          type="text"
-          className="form-control"
-          placeholder={method === 'upi' ? 'e.g. yourname@upi' : 'Account No & IFSC'}
-          value={upiId}
-          onChange={(e) => setUpiId(e.target.value)}
-        />
-      </div>
+            {/* Account No */}
+            <div>
+              <label style={{ fontSize: '13px', fontWeight: '600', color: 'var(--text-secondary)', display: 'block', marginBottom: '6px' }}>
+                Account No <span style={{ color: '#ef4444' }}>*</span>
+              </label>
+              <input
+                id="withdrawAccountNo"
+                type="text"
+                placeholder="Enter Account No"
+                value={accountNo}
+                onChange={e => setAccountNo(e.target.value)}
+                style={{ width: '100%', padding: '12px 14px', background: 'var(--bg-primary)', border: '1px solid var(--border-primary)', borderRadius: '6px', color: 'var(--text-primary)', fontSize: '14px', outline: 'none', boxSizing: 'border-box' }}
+              />
+            </div>
 
-      <div className="form-group" style={{ marginBottom: '20px' }}>
-        <label className="form-label" htmlFor="withdrawAmount">Withdrawal Amount</label>
-        <div style={{ position: 'relative' }}>
-          <span style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)', fontWeight: '700' }}>₹</span>
-          <input
-            id="withdrawAmount"
-            type="number"
-            className="form-control"
-            placeholder="Minimum ₹500"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            style={{ paddingLeft: '32px', fontSize: '15px', fontWeight: '700' }}
-          />
-        </div>
-      </div>
+            {/* Confirm Account No */}
+            <div>
+              <label style={{ fontSize: '13px', fontWeight: '600', color: 'var(--text-secondary)', display: 'block', marginBottom: '6px' }}>
+                Confirm Account No <span style={{ color: '#ef4444' }}>*</span>
+              </label>
+              <input
+                id="withdrawConfirmAccountNo"
+                type="text"
+                placeholder="Re-enter Account No"
+                value={confirmAccountNo}
+                onChange={e => setConfirmAccountNo(e.target.value)}
+                style={{ width: '100%', padding: '12px 14px', background: 'var(--bg-primary)', border: '1px solid var(--border-primary)', borderRadius: '6px', color: 'var(--text-primary)', fontSize: '14px', outline: 'none', boxSizing: 'border-box' }}
+              />
+            </div>
 
-      <button className="btn-primary-full" id="withdrawSubmitBtn" style={{ maxWidth: '320px' }}>
-        Request Withdrawal
-      </button>
-      <div style={{ marginTop: '10px', fontSize: '11px', color: 'var(--text-muted)' }}>
-        <i className="bi bi-info-circle me-1"></i>Processing time: 2–4 business hours. Min. ₹500 per withdrawal.
+            {/* Account Name */}
+            <div>
+              <label style={{ fontSize: '13px', fontWeight: '600', color: 'var(--text-secondary)', display: 'block', marginBottom: '6px' }}>
+                Account Name <span style={{ color: '#ef4444' }}>*</span>
+              </label>
+              <input
+                id="withdrawAccountName"
+                type="text"
+                placeholder="Enter Account Name"
+                value={accountName}
+                onChange={e => setAccountName(e.target.value)}
+                style={{ width: '100%', padding: '12px 14px', background: 'var(--bg-primary)', border: '1px solid var(--border-primary)', borderRadius: '6px', color: 'var(--text-primary)', fontSize: '14px', outline: 'none', boxSizing: 'border-box' }}
+              />
+            </div>
+          </>
+        )}
+
+        {accountType === 'previous' && (
+          <div style={{ padding: '24px', textAlign: 'center', color: 'var(--text-muted)', fontSize: '13px', background: 'var(--bg-primary)', borderRadius: '6px', border: '1px solid var(--border-primary)' }}>
+            No previous accounts found. Use "Use New Account" to add one.
+          </div>
+        )}
+
+        {/* Submit */}
+        <button
+          id="withdrawSubmitBtn"
+          style={{
+            width: '100%', padding: '13px', background: 'var(--brand-primary)',
+            border: 'none', borderRadius: '6px', color: '#000',
+            fontWeight: '800', fontSize: '15px', cursor: 'pointer',
+            transition: 'opacity 0.2s',
+          }}
+        >
+          Submit
+        </button>
       </div>
     </div>
   );
