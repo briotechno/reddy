@@ -49,7 +49,7 @@ export default function AfterLoginLayout() {
       </nav>
 
       {/* Page Content */}
-      <div style={{ background: 'var(--bg-secondary)', borderRadius: '8px', border: '1px solid var(--border-primary)', padding: '20px' }}>
+      <div style={{ background: 'var(--bg-secondary)', borderRadius: '8px', border: '1px solid var(--border-primary)', overflow: 'hidden' }}>
         <Outlet />
       </div>
     </div>

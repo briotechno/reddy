@@ -133,16 +133,15 @@ export default function Header() {
                   </button>
                   <ul className="dropdown-menu dropdown-menu-dark dropdown-menu-end" style={{ background:'var(--bg-secondary)', border:'1px solid var(--border-primary)', minWidth:'200px' }}>
                     <li><Link className="dropdown-item" to="/AfterLogin">My Account</Link></li>
-                    <li><Link className="dropdown-item" to="/AfterLogin/Deposit">Deposit</Link></li>
-                    <li><Link className="dropdown-item" to="/AfterLogin/Withdrawal">Withdraw</Link></li>
-                    <li><Link className="dropdown-item" to="/AfterLogin/OpenBets">Open Bets</Link></li>
-                    <li><Link className="dropdown-item" to="/AfterLogin/BetHistory">Bet History</Link></li>
-                    <li><Link className="dropdown-item" to="/AfterLogin/ProfitLoss">Profit &amp; Loss</Link></li>
                     <li><Link className="dropdown-item" to="/AfterLogin/AccountStatement">Account Statement</Link></li>
+                    <li><Link className="dropdown-item" to="/AfterLogin/ProfitLoss">Profit &amp; Loss</Link></li>
+                    <li><Link className="dropdown-item" to="/AfterLogin/BetHistory">Bet History</Link></li>
+                    <li><Link className="dropdown-item" to="/AfterLogin/OpenBets">Open Bets</Link></li>
                     <li><Link className="dropdown-item" to="/AfterLogin/Transactions">Transactions</Link></li>
                     <li><Link className="dropdown-item" to="/AfterLogin/Bonus">Bonus</Link></li>
                     <li><Link className="dropdown-item" to="/AfterLogin/ReferEarn">Refer &amp; Earn</Link></li>
                     <li><Link className="dropdown-item" to="/AfterLogin/Settings">Settings</Link></li>
+                    <li><Link className="dropdown-item" to="/AfterLogin/ChangePassword">Change Password</Link></li>
                     <li><hr className="dropdown-divider" /></li>
                     <li><button className="dropdown-item text-danger" onClick={logout}>Logout</button></li>
                   </ul>

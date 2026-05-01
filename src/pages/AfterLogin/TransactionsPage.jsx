@@ -16,7 +16,7 @@ const STATUS_COLORS = {
 
 export default function TransactionsPage() {
   return (
-    <div>
+    <div style={{ padding: '16px' }}>
       {/* Summary */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px', marginBottom: '20px' }}>
         {[

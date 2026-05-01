@@ -16,7 +16,7 @@ export default function BetHistoryPage() {
   const filtered = activeTab === 'All' ? ALL_BETS : ALL_BETS.filter((b) => b.status === activeTab.toLowerCase());
 
   return (
-    <div>
+    <div style={{ padding: '16px' }}>
       <h2 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '16px' }}>Bet History</h2>
 
       <div style={{ display: 'flex', gap: '6px', marginBottom: '16px', flexWrap: 'wrap' }}>

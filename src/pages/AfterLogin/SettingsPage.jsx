@@ -11,7 +11,7 @@ export default function SettingsPage() {
   const toggleNotif = (k) => setNotif((p) => ({ ...p, [k]: !p[k] }));
 
   return (
-    <div>
+    <div style={{ padding: '16px' }}>
       <h2 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '20px' }}>Settings</h2>
       {saved && (
         <div className="fade-in" style={{ background: 'rgba(34,197,94,0.15)', border: '1px solid rgba(34,197,94,0.4)', color: '#22c55e', padding: '10px 16px', borderRadius: '8px', marginBottom: '16px', fontSize: '13px', fontWeight: '600' }}>

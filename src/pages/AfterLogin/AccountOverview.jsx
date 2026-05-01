@@ -17,7 +17,7 @@ const RECENT_BETS = [
 export default function AccountOverview() {
   const { user } = useAuth();
   return (
-    <div>
+    <div style={{ padding: '16px' }}>
       <h2 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '20px' }}>
         My Account
       </h2>

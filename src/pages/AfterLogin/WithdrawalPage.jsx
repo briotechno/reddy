@@ -19,7 +19,7 @@ export default function WithdrawalPage() {
   ];
 
   return (
-    <div>
+    <div style={{ padding: '16px' }}>
       {/* Title */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" strokeWidth="2">

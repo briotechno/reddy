@@ -34,7 +34,7 @@ export default function DepositPage() {
   const displayAmount = amount ? `₹${parseInt(amount).toLocaleString('en-IN')}` : '₹0';
 
   return (
-    <div>
+    <div style={{ padding: '16px' }}>
       <h2 style={{ fontSize:'20px', fontWeight:'800', color:'var(--text-primary)', marginBottom:'16px' }}>Deposit Funds</h2>
 
       {/* 3-Tab Switcher */}

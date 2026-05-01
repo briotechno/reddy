@@ -26,7 +26,7 @@ export default function ReferEarnPage() {
   };
 
   return (
-    <div>
+    <div style={{ padding: '16px' }}>
       {/* Hero Banner */}
       <div style={{ background: 'linear-gradient(135deg, #1a1d28, #2d1500)', border: '1px solid var(--brand-primary)40', borderRadius: '12px', padding: '24px', marginBottom: '20px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: 0, right: 0, width: '200px', height: '200px', background: 'radial-gradient(circle, rgba(229,140,31,0.1), transparent 70%)', pointerEvents: 'none' }}></div>

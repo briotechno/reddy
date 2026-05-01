@@ -9,7 +9,7 @@ export default function OpenBetsPage() {
   const [filter, setFilter] = useState('all');
 
   return (
-    <div>
+    <div style={{ padding: '16px' }}>
       <div style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
         {['all', 'sports', 'casino'].map((f) => (
           <button key={f} onClick={() => setFilter(f)} style={{

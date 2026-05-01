@@ -23,6 +23,7 @@ import ResponsibleGamingPage from './pages/ResponsibleGamingPage';
 import RulesPage from './pages/RulesPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import NotFound from './pages/NotFound';
+import CricketMatchPage from './pages/CricketMatchPage';
 
 // AfterLogin Pages
 import AfterLoginLayout from './pages/AfterLogin/AfterLoginLayout';
@@ -46,7 +47,7 @@ import TransferStatementPage from './pages/AfterLogin/TransferStatementPage';
 
 // Casino pages that use full-width layout (no left sidebar)
 const CASINO_PATHS = ['/live-casino','/slots','/crash-games','/fishing-games','/aura','/aviator','/indian-card-games'];
-const SPORT_PATHS = ['/cricket','/football','/tennis','/horse-racing','/greyhound-racing','/basketball','/kabaddi'];
+const SPORT_PATHS = ['/cricket','/football','/tennis','/horse-racing','/greyhound-racing','/basketball','/kabaddi','/cricket/match','/football/match','/tennis/match','/horse-racing/match'];
 
 function AppLayout() {
   const location = useLocation();
@@ -67,6 +68,8 @@ function AppLayout() {
 
               {/* Sports */}
               <Route path="/cricket" element={<CricketPage />} />
+              <Route path="/cricket/match" element={<CricketMatchPage />} />
+              <Route path="/cricket/match/:id" element={<CricketMatchPage />} />
               <Route path="/football" element={<FootballPage />} />
               <Route path="/tennis" element={<TennisPage />} />
               <Route path="/horse-racing" element={<HorseRacingPage />} />
