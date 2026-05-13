@@ -1,133 +1,59 @@
 import React from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
-import Header from './components/Header';
-import LeftSidebar from './components/LeftSidebar';
-import SportSidebar from './components/SportSidebar';
-import Betslip from './components/Betslip';
-import MobileBottomNav from './components/MobileBottomNav';
-import WhatsAppButton from './components/WhatsAppButton';
-import Footer from './components/Footer';
+import { Layout } from './components/MainComponent/Layout';
 
-// Main Pages
-import HomePage from './pages/HomePage';
-import CricketPage from './pages/CricketPage';
-import FootballPage from './pages/FootballPage';
-import TennisPage from './pages/TennisPage';
-import HorseRacingPage from './pages/HorseRacingPage';
-import GreyhoundRacingPage from './pages/GreyhoundRacingPage';
-import SportsPage from './pages/SportsPage';
-import CasinoGamePage from './pages/CasinoGamePage';
-import BlogsPage from './pages/BlogsPage';
-import ResponsibleGamingPage from './pages/ResponsibleGamingPage';
-import RulesPage from './pages/RulesPage';
-import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
-import NotFound from './pages/NotFound';
-import CricketMatchPage from './pages/CricketMatchPage';
-
-// AfterLogin Pages
-import AfterLoginLayout from './pages/AfterLogin/AfterLoginLayout';
-import AccountOverview from './pages/AfterLogin/AccountOverview';
-import DepositPage from './pages/AfterLogin/DepositPage';
-import WithdrawalPage from './pages/AfterLogin/WithdrawalPage';
-import BetHistoryPage from './pages/AfterLogin/BetHistoryPage';
-import SettingsPage from './pages/AfterLogin/SettingsPage';
-import OpenBetsPage from './pages/AfterLogin/OpenBetsPage';
-import AccountStatementPage from './pages/AfterLogin/AccountStatementPage';
-import ProfitLossPage from './pages/AfterLogin/ProfitLossPage';
-import BonusStatementPage from './pages/AfterLogin/BonusStatementPage';
-import BonusPage from './pages/AfterLogin/BonusPage';
-import CampaignsPage from './pages/AfterLogin/CampaignsPage';
-import ChangePasswordPage from './pages/AfterLogin/ChangePasswordPage';
-import LosebackPage from './pages/AfterLogin/LosebackPage';
-import ReferEarnPage from './pages/AfterLogin/ReferEarnPage';
-import TimeSettingPage from './pages/AfterLogin/TimeSettingPage';
-import TransactionsPage from './pages/AfterLogin/TransactionsPage';
-import TransferStatementPage from './pages/AfterLogin/TransferStatementPage';
-
-// Casino pages that use full-width layout (no left sidebar)
-const CASINO_PATHS = ['/live-casino','/slots','/crash-games','/fishing-games','/aura','/aviator','/indian-card-games'];
-const SPORT_PATHS = ['/cricket','/football','/tennis','/horse-racing','/greyhound-racing','/basketball','/kabaddi','/cricket/match','/football/match','/tennis/match','/horse-racing/match'];
+// New Pages from src/pages/Main
+import HomePage from './pages/Main/HomePage';
+import { SportPage } from './pages/Main/SportPage';
+import { LiveCasinoPage } from './pages/Main/LiveCasinoPage';
+import { CrashGamesPage } from './pages/Main/CrashGamesPage';
+import { SlotGamesPage } from './pages/Main/SlotGamesPage';
+import { IplPage } from './pages/Main/IplPage';
+import { PromotionPage } from './pages/Main/PromotionPage';
+import { DepositPage } from './pages/Main/DepositPage';
+import { WithdrawPage } from './pages/Main/WithdrawPage';
+import { OfferPage } from './pages/Main/OfferPage';
+import { AccountStatementPage } from './pages/Main/AccountStatementPage';
+import { SettingPage } from './pages/Main/SettingPage';
+import { ChangePasswordPage } from './pages/Main/ChangePasswordPage';
+import { OpenBetsPage } from './pages/Main/OpenBetsPage';
+import { FavouritesPage } from './pages/Main/FavouritesPage';
+import { BlogNewsPage } from './pages/Main/BlogNewsPage';
+import { ResponsibleGamblingPage } from './pages/Main/ResponsibleGamblingPage';
+import { PrivacyPolicyPage } from './pages/Main/PrivacyPolicyPage';
+import { ExclusionPolicyPage } from './pages/Main/ExclusionPolicyPage';
+import { RulesRegulationsPage } from './pages/Main/RulesRegulationsPage';
 
 function AppLayout() {
-  const location = useLocation();
-  const isCasinoPage = CASINO_PATHS.includes(location.pathname);
-  const isSportPage = SPORT_PATHS.includes(location.pathname);
-
   return (
-    <div className="app-container">
-      <Header />
-      <div className="main-layout">
-        <div className="content-wrapper">
-          {/* Sport pages use sport-specific sidebar; casino pages hide sidebar */}
-          {!isCasinoPage && (isSportPage ? <SportSidebar /> : <LeftSidebar />)}
-          <main className={`center-content page-container${isCasinoPage ? ' casino-fullwidth' : ''}`}>
-            <Routes>
-              {/* ── Main Pages ── */}
-              <Route path="/" element={<HomePage />} />
-
-              {/* Sports */}
-              <Route path="/cricket" element={<CricketPage />} />
-              <Route path="/cricket/match" element={<CricketMatchPage />} />
-              <Route path="/cricket/match/:id" element={<CricketMatchPage />} />
-              <Route path="/football" element={<FootballPage />} />
-              <Route path="/tennis" element={<TennisPage />} />
-              <Route path="/horse-racing" element={<HorseRacingPage />} />
-              <Route path="/greyhound-racing" element={<GreyhoundRacingPage />} />
-              <Route path="/basketball" element={<SportsPage sport="Basketball" />} />
-              <Route path="/kabaddi" element={<SportsPage sport="Kabaddi" />} />
-              <Route path="/sports" element={<SportsPage sport="All Sports" />} />
-              <Route path="/sportsbook" element={<CasinoGamePage pageKey="sportsbook" />} />
-
-              {/* Casino / Games — full-width */}
-              <Route path="/live-casino" element={<CasinoGamePage pageKey="live-casino" />} />
-              <Route path="/slots" element={<CasinoGamePage pageKey="slots" />} />
-              <Route path="/crash-games" element={<CasinoGamePage pageKey="crash-games" />} />
-              <Route path="/fishing-games" element={<CasinoGamePage pageKey="fishing-games" />} />
-              <Route path="/aura" element={<CasinoGamePage pageKey="aura" />} />
-              <Route path="/aviator" element={<CasinoGamePage pageKey="aviator" />} />
-              <Route path="/indian-card-games" element={<CasinoGamePage pageKey="indian-card-games" />} />
-
-              {/* Info Pages */}
-              <Route path="/blogs" element={<BlogsPage />} />
-              <Route path="/blogs-news" element={<BlogsPage />} />
-              <Route path="/responsible-gaming" element={<ResponsibleGamingPage />} />
-              <Route path="/rules" element={<RulesPage />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-              <Route path="/bonus" element={<BonusPage />} />
-              <Route path="/download-apk" element={<NotFound />} />
-
-              {/* ── AfterLogin Pages ── */}
-              <Route path="/AfterLogin" element={<AfterLoginLayout />}>
-                <Route index element={<AccountOverview />} />
-                <Route path="Deposit" element={<DepositPage />} />
-                <Route path="Withdrawal" element={<WithdrawalPage />} />
-                <Route path="BetHistory" element={<BetHistoryPage />} />
-                <Route path="OpenBets" element={<OpenBetsPage />} />
-                <Route path="AccountStatement" element={<AccountStatementPage />} />
-                <Route path="ProfitLoss" element={<ProfitLossPage />} />
-                <Route path="BonusStatement" element={<BonusStatementPage />} />
-                <Route path="Bonus" element={<BonusPage />} />
-                <Route path="Campaigns" element={<CampaignsPage />} />
-                <Route path="ChangePassword" element={<ChangePasswordPage />} />
-                <Route path="Loseback" element={<LosebackPage />} />
-                <Route path="ReferEarn" element={<ReferEarnPage />} />
-                <Route path="Settings" element={<SettingsPage />} />
-                <Route path="TimeSetting" element={<TimeSettingPage />} />
-                <Route path="Transactions" element={<TransactionsPage />} />
-                <Route path="TransferStatement" element={<TransferStatementPage />} />
-              </Route>
-
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <Betslip />
-        </div>
-      </div>
-      <Footer />
-      <MobileBottomNav />
-      <WhatsAppButton />
-    </div>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/sport" element={<SportPage />} />
+        <Route path="/live-casino" element={<LiveCasinoPage />} />
+        <Route path="/crash-games" element={<CrashGamesPage />} />
+        <Route path="/slots" element={<SlotGamesPage />} />
+        <Route path="/ipl" element={<IplPage />} />
+        <Route path="/promotions" element={<PromotionPage />} />
+        <Route path="/deposit" element={<DepositPage />} />
+        <Route path="/withdraw" element={<WithdrawPage />} />
+        <Route path="/offers" element={<OfferPage />} />
+        <Route path="/account-statement" element={<AccountStatementPage />} />
+        <Route path="/settings" element={<SettingPage />} />
+        <Route path="/change-password" element={<ChangePasswordPage />} />
+        <Route path="/open-bets" element={<OpenBetsPage />} />
+        <Route path="/favourites" element={<FavouritesPage />} />
+        <Route path="/blog-news" element={<BlogNewsPage />} />
+        <Route path="/responsible-gambling" element={<ResponsibleGamblingPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/exclusion-policy" element={<ExclusionPolicyPage />} />
+        <Route path="/rules-regulations" element={<RulesRegulationsPage />} />
+        
+        {/* Fallback */}
+        <Route path="*" element={<HomePage />} />
+      </Routes>
+    </Layout>
   );
 }
 
